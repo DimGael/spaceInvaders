@@ -1,0 +1,16 @@
+Critères d'acceptances :
+
+------------- Positioner un nouveau vaisseau -------------
+	- Doit créer un vaisseau
+	- Il doit être positionné en haut à gauche
+----------------------------------------------------------
+
+
+------------- Déplacer le vaisseau à droite --------------
+	- Le vaisseau doit être un peu plus à droite
+----------------------------------------------------------
+
+
+------------- Déplacer le vaisseau à droite --------------
+	- Le vaisseau doit être un peu plus à gauche
+----------------------------------------------------------
