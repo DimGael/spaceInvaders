@@ -21,10 +21,10 @@ public class SpaceInvaders {
 
 	@Override
 	public String toString() {
-		return recupererEspaceDeJeuChaineASCII();
+		return recupererEspaceJeuDansChaineASCII();
 	}
 
-	public String recupererEspaceDeJeuChaineASCII() {
+	public String recupererEspaceJeuDansChaineASCII() {
 		StringBuilder espaceDeJeu = new StringBuilder();
 		for (int y = 0; y < this.hauteur; y++) {
 			for (int x = 0; x < this.longueur; x++) {
@@ -63,6 +63,10 @@ public class SpaceInvaders {
 
 	private boolean estDansEspaceJeu(int x, int y) {
 		return ((x >= 0) && (x < this.longueur)) && ((y >= 0) && (y < this.hauteur));
+	}
+
+	public void deplacerVaisseauVersLaDroite() {
+		 if (vaisseau.abscisse()< (longueur-1)) vaisseau.seDeplacerVersLaDroite();
 	}
 
 }
