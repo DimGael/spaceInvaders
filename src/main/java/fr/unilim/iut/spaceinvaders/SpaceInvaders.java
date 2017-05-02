@@ -22,7 +22,7 @@ public class SpaceInvaders {
 		return recupererEspaceDeJeuChaineASCII();
 	}
 
-	private String recupererEspaceDeJeuChaineASCII() {
+	public String recupererEspaceDeJeuChaineASCII() {
 		StringBuilder espaceDeJeu = new StringBuilder();
 		for (int y = 0; y < this.hauteur; y++) {
 			for (int x = 0; x < this.longueur; x++) {
