@@ -48,12 +48,6 @@ public class SpaceInvadersTest {
 			throws Exception {
 		spaceinvaders.positionnerUnNouveauVaisseau(15, 9);
 	}
-
-	@Test(expected = HorsEspaceJeuException.class)
-	public void test_unNouveauVaisseauEstPositionneHorsEspaceJeuTropEnBas_UneExceptionEstLevee()
-			throws Exception {
-		spaceinvaders.positionnerUnNouveauVaisseau(14, 10);
-	}
 	
 	// test de déplacement d'un vaisseau
     @Test
@@ -96,4 +90,46 @@ public class SpaceInvadersTest {
 		"..............V\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 	}
     
+    @Test
+	public void test_VaisseauAvance_DeplacerVaisseauVersLaGauche() {
+		
+		spaceinvaders.positionnerUnNouveauVaisseau(7,9);
+
+		spaceinvaders.deplacerVaisseauVersLaGauche();
+		
+		assertEquals("" + 
+		"...............\n" + 
+		"...............\n" +
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"......V........\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
+    
+	@Test
+	public void test_VaisseauImmobile_DeplacerVaisseauVersLaGauche() {
+		
+		spaceinvaders.positionnerUnNouveauVaisseau(0,9);
+
+		spaceinvaders.deplacerVaisseauVersLaGauche();
+		
+		assertEquals("" + 
+		"...............\n" + 
+		"...............\n" +
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"V..............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
+    
+	
+	
 }

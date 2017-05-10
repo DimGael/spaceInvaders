@@ -23,4 +23,8 @@ public class Vaisseau {
 	public void seDeplacerVersLaDroite() {
 		this.x = this.x+1;		
 	}
+	
+	public void seDeplacerVersLaGauche() {
+		this.x = this.x-1;
+	}
 }

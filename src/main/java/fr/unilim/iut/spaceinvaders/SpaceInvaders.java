@@ -11,17 +11,8 @@ public class SpaceInvaders {
 	private Vaisseau vaisseau;
 
 	public SpaceInvaders(int longueur, int hauteur) {
-		if (longueur <= 0 || hauteur <= 0) {
-			throw new IllegalArgumentException(
-					"La largeur et la hauteur doivent être supérieurs à 0");
-		}
 		this.longueur = longueur;
 		this.hauteur = hauteur;
-	}
-
-	@Override
-	public String toString() {
-		return recupererEspaceJeuDansChaineASCII();
 	}
 
 	public String recupererEspaceJeuDansChaineASCII() {
@@ -67,6 +58,10 @@ public class SpaceInvaders {
 
 	public void deplacerVaisseauVersLaDroite() {
 		 if (vaisseau.abscisse()< (longueur-1)) vaisseau.seDeplacerVersLaDroite();
+	}
+
+	public void deplacerVaisseauVersLaGauche() {
+		 if (vaisseau.abscisse() > 0) vaisseau.seDeplacerVersLaGauche();
 	}
 
 }
