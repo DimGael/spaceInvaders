@@ -14,3 +14,6 @@ Critères d'acceptances :
 ------------- Déplacer le vaisseau à droite --------------
 	- Le vaisseau doit être un peu plus à gauche
 ----------------------------------------------------------
+
+
+(Test de commit et fetch)
