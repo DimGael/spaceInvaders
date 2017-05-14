@@ -46,4 +46,8 @@ public class Vaisseau {
 	    this.x = x;
 	    this.y = y;
     }
+	
+	private void test(){
+		System.out.println("Github c'est bizzare je peux pas fetch correctement");
+	}
 }
