@@ -1,22 +1,36 @@
 package fr.unilim.iut.spaceinvaders;
 
 public class Vaisseau {
-	// hauteur
-	private int x;
 	
-	// longueur
+	private int x;
 	private int y;
+	private int hauteur;
+	private int longueur;
 
-		public Vaisseau(int x, int y) {
-		this.x = x;
-		this.y = y;
+	public Vaisseau(int longueur, int hauteur) {
+		this(longueur, hauteur, 0, 0);
 	}
+	
+	  public Vaisseau(int longueur, int hauteur, int x, int y) {
+		   this.longueur=longueur;
+		   this.hauteur=hauteur;
+		   this.x = x;
+		   this.y = y;
+	  }
 	
 	public boolean occupeLaPosition(int x, int y) {
-		return (this.x==x) && (this.y==y);
+		if ((this.x <= x) && (x <= abscisseLaPlusADroite()))
+			if ((this.y - this.hauteur + 1 <= y) && (y <= this.y))
+				return true;
+
+		return false;
 	}
 
-	public int abscisse() {
+	public int abscisseLaPlusADroite() {
+		return this.x + this.longueur - 1;
+	}
+
+	public int abscisseLaPlusAGauche() {
 		return x;
 	}
 
@@ -27,4 +41,9 @@ public class Vaisseau {
 	public void seDeplacerVersLaGauche() {
 		this.x = this.x-1;
 	}
+
+	public void positionner(int x, int y) {
+	    this.x = x;
+	    this.y = y;
+    }
 }
