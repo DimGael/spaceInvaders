@@ -1,10 +1,13 @@
 package fr.unilim.iut.spaceinvaders;
 
+import fr.unilim.iut.spaceinvaders.moteurJeu.Commande;
+import fr.unilim.iut.spaceinvaders.moteurJeu.Jeu;
 import fr.unilim.iut.spaceinvaders.utils.DebordementEspaceJeuException;
 import fr.unilim.iut.spaceinvaders.utils.HorsEspaceJeuException;
 
-public class SpaceInvaders {
-
+public class SpaceInvaders implements Jeu{
+	
+	
 	private static final char MARQUE_VIDE = '.';
 	private static final char MARQUE_VAISSEAU = 'V';
 	private final int hauteur;
@@ -14,6 +17,10 @@ public class SpaceInvaders {
 	public SpaceInvaders(int longueur, int hauteur) {
 		this.longueur = longueur;
 		this.hauteur = hauteur;
+	}
+	
+	public void initialiserJeu(){
+		this.positionnerUnNouveauVaisseau(new Dimension(Constante.VAISSEAU_LONGUEUR,Constante.VAISSEAU_HAUTEUR) ,new Position(this.longueur/2, this.hauteur-1));
 	}
 
 	public String recupererEspaceJeuDansChaineASCII() {
@@ -25,6 +32,10 @@ public class SpaceInvaders {
 			espaceDeJeu.append('\n');
 		}
 		return espaceDeJeu.toString();
+	}
+	
+	public Vaisseau recupererVaisseau(){
+		return this.vaisseau;
 	}
 
 	private char recupererMarqueDeLaPosition(int x, int y) {
@@ -40,7 +51,7 @@ public class SpaceInvaders {
 		return this.aUnVaisseau() && this.vaisseau.occupeLaPosition(x, y);
 	}
 
-	private boolean aUnVaisseau() {
+	public boolean aUnVaisseau() {
 		return this.vaisseau != null;
 	}
 
@@ -54,7 +65,8 @@ public class SpaceInvaders {
 	}
 
 	public void deplacerVaisseauVersLaGauche() {
-		 if (vaisseau.abscisseLaPlusAGauche() > 0) vaisseau.seDeplacerVersLaGauche();
+		 if (vaisseau.abscisseLaPlusAGauche() > 0) 
+			 vaisseau.seDeplacerVersLaGauche();
 	}
 	
 	public void positionnerUnNouveauVaisseau(Dimension dimension, Position position) {
@@ -78,5 +90,20 @@ public class SpaceInvaders {
 
 		vaisseau = new Vaisseau(longueurVaisseau, hauteurVaisseau);
 		vaisseau.positionner(x, y);
+	}
+	
+
+	public void evoluer(Commande commandeUser) {
+		if(commandeUser.gauche){
+			deplacerVaisseauVersLaGauche();
+		}
+		
+		if(commandeUser.droite){
+			deplacerVaisseauVersLaDroite();
+		}
+	}
+
+	public boolean etreFini() {
+		return false;
 	}
 }
