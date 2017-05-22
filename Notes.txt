@@ -16,3 +16,6 @@ Critères d'acceptances :
 ------------- Déplacer le vaisseau à droite --------------
 	- Le vaisseau doit être un peu plus à gauche
 ----------------------------------------------------------
+
+
+Penser à rajouter sprite et une définition de vitesse dans le glossaire.
