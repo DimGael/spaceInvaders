@@ -26,6 +26,10 @@ public abstract class Sprite {
 		return false;
 	}
 
+	private boolean estAbscisseCouverte(int x) {
+		return (this.abscisseLaPlusAGauche() <= x) && (x <= abscisseLaPlusADroite());
+	}
+
 	private boolean estOrdonneeCouverte(int y) {
 		return (ordonneeLaPlusBasse() <= y) && (y <= ordonneeLaPlusHaute());
 	}
@@ -36,10 +40,6 @@ public abstract class Sprite {
 
 	public int ordonneeLaPlusBasse() {
 		return ordonneeLaPlusHaute() - this.dimension.hauteur() + 1;
-	}
-
-	private boolean estAbscisseCouverte(int x) {
-		return (this.abscisseLaPlusAGauche() <= x) && (x <= abscisseLaPlusADroite());
 	}
 
 	public int abscisseLaPlusADroite() {
@@ -69,6 +69,10 @@ public abstract class Sprite {
 
 	public int longueur() {
 		return dimension.longueur();
+	}
+
+	public int hauteur() {
+		return this.dimension.hauteur();
 	}
 
 }

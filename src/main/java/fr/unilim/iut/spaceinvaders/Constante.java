@@ -11,4 +11,5 @@ public class Constante {
 	public static final char MARQUE_VAISSEAU = 'V';
 	
 	public static final int VAISSEAU_VITESSE = 10;
+	public static final char MARQUE_MISSILE = 'M';
 }
