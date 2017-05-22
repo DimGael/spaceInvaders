@@ -48,11 +48,11 @@ public class Controleur implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 
 		switch (e.getKeyChar()) {
-			case KeyEvent.VK_LEFT:
+			case 'q':
 				this.commandeEnCours.gauche = true;
 				this.commandeARetourner.gauche = true;
 				break;
-			case KeyEvent.VK_RIGHT:
+			case 'd':
 				this.commandeEnCours.droite = true;
 				this.commandeARetourner.droite = true;
 				break;
@@ -67,10 +67,10 @@ public class Controleur implements KeyListener {
 	 */
 	public void keyReleased(KeyEvent e) {
 		switch (e.getKeyChar()) {
-		case KeyEvent.VK_LEFT:
+		case 'q':
 			this.commandeEnCours.gauche = false;
 			break;
-		case KeyEvent.VK_RIGHT:
+		case 'd':
 			this.commandeEnCours.droite = false;
 			break;
 		default:break;

@@ -32,7 +32,7 @@ public class DessinSpaceInvaders implements DessinJeu {
 		Graphics2D g2d = (Graphics2D) image.getGraphics();
 		
 		g2d.setColor(Color.GRAY);
-		g2d.fillRect(vaisseau.abscisseLaPlusAGauche(), vaisseau.ordonneeLaPlusBasse(), vaisseau.dimension.longueur(), vaisseau.dimension.hauteur());
+		g2d.fillRect(vaisseau.abscisseLaPlusAGauche(), vaisseau.ordonneeLaPlusBasse(), vaisseau.getDimension().longueur(), vaisseau.getDimension().hauteur());
 	}
 
 }
