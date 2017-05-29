@@ -1,53 +1,27 @@
 package fr.unilim.iut.spaceinvaders;
 
-public class Vaisseau {
-	
-	private int x;
-	private int y;
-	private int hauteur;
-	private int longueur;
+import fr.unilim.iut.spaceinvaders.utils.MissileException;
 
-	public Vaisseau(int longueur, int hauteur) {
-		this(longueur, hauteur, 0, 0);
+public class Vaisseau extends Sprite {
+
+	public Vaisseau(Dimension dimension, Position positionOrigine, int vitesse) {
+		super(dimension, positionOrigine, vitesse);
 	}
 	
-	  public Vaisseau(int longueur, int hauteur, int x, int y) {
-		   this.longueur=longueur;
-		   this.hauteur=hauteur;
-		   this.x = x;
-		   this.y = y;
-	  }
-	
-	public boolean occupeLaPosition(int x, int y) {
-		if ((this.x <= x) && (x <= abscisseLaPlusADroite()))
-			if ((this.y - this.hauteur + 1 <= y) && (y <= this.y))
-				return true;
-
-		return false;
+    public Missile tirerUnMissile(Dimension dimensionMissile, int vitesseMissile) {
+		if(dimensionMissile.longueur() > this.longueur())
+			throw new MissileException("La longueur du missile est supérieure à celle du vaisseau !");
+    	
+		Position positionOrigineMissile = calculerLaPositionDeTirDuMissile(dimensionMissile);
+		return new Missile(dimensionMissile, positionOrigineMissile, vitesseMissile);
 	}
 
-	public int abscisseLaPlusADroite() {
-		return this.x + this.longueur - 1;
-	}
+	public Position calculerLaPositionDeTirDuMissile(Dimension dimensionMissile) {
+		int abscisseMilieuVaisseau = this.abscisseLaPlusAGauche() + (this.longueur() / 2);
+		int abscisseOrigineMissile = abscisseMilieuVaisseau - (dimensionMissile.longueur() / 2);
 
-	public int abscisseLaPlusAGauche() {
-		return x;
-	}
-
-	public void seDeplacerVersLaDroite() {
-		this.x = this.x+1;		
-	}
-	
-	public void seDeplacerVersLaGauche() {
-		this.x = this.x-1;
-	}
-
-	public void positionner(int x, int y) {
-	    this.x = x;
-	    this.y = y;
-    }
-	
-	private void test(){
-		System.out.println("Github c'est bizzare je peux pas fetch correctement");
+		int ordonneeeOrigineMissile = this.ordonneeLaPlusBasse() - 1;
+		Position positionOrigineMissile = new Position(abscisseOrigineMissile, ordonneeeOrigineMissile);
+		return positionOrigineMissile;
 	}
 }
