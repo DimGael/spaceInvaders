@@ -110,26 +110,7 @@ public class SpaceInvaders implements Jeu{
 	}
 	
 
-	public void evoluer(Commande commandeUser) {
-		if (commandeUser.gauche) {
-				deplacerVaisseauVersLaGauche();
-		}
-
-		if (commandeUser.droite) {
-				deplacerVaisseauVersLaDroite();
-		}
-		
-		if (commandeUser.tir && !this.aUnMissile()){
-	           tirerUnMissile(new Dimension(Constante.MISSILE_LONGUEUR, Constante.MISSILE_HAUTEUR),
-						Constante.MISSILE_VITESSE);
-		   }
-	}
-
-	public boolean etreFini() {
-		return false;
-	}
-	
-    public void tirerUnMissile(Dimension dimensionMissile, int vitesseMissile) {
+	public void tirerUnMissile(Dimension dimensionMissile, int vitesseMissile) {
 		
 		   if ((vaisseau.hauteur()+ dimensionMissile.hauteur()) > this.hauteur )
 			   throw new MissileException("Pas assez de hauteur libre entre le vaisseau et le haut de l'espace jeu pour tirer le missile");
@@ -142,9 +123,36 @@ public class SpaceInvaders implements Jeu{
 	}
 
 	public void deplacerMissile() {
-		this.missile.deplacerVerticalementVers(Direction.HAUT_ECRAN);
-		if(!estDansEspaceJeu(this.missile.abscisseLaPlusADroite(), this.missile.ordonneeLaPlusHaute())){
-			this.missile = null;//TODO
+		if (this.aUnMissile()) {
+			this.missile.deplacerVerticalementVers(Direction.HAUT_ECRAN);if (!estDansEspaceJeu(this.missile.abscisseLaPlusADroite(), this.missile.ordonneeLaPlusBasse())) {
+				// On regarde si l'ordonnée la plus basse est dans l'espace de
+				// jeu car abscisse = 0 correspond à la ligne la plus en haut
+				this.missile = null;
+			}
+		}
+
+	}
+
+	public boolean etreFini() {
+		return false;
+	}
+
+	public void evoluer(Commande commandeUser) {
+		if (commandeUser.gauche) {
+				deplacerVaisseauVersLaGauche();
+		}
+	
+		if (commandeUser.droite) {
+				deplacerVaisseauVersLaDroite();
+		}
+		
+		if (commandeUser.tir && !this.aUnMissile()){
+	           tirerUnMissile(new Dimension(Constante.MISSILE_LONGUEUR, Constante.MISSILE_HAUTEUR),
+						Constante.MISSILE_VITESSE);
+		   }
+		
+		if (this.aUnMissile()){
+			this.deplacerMissile();
 		}
 	}
 
