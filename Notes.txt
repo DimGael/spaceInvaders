@@ -1,6 +1,8 @@
 Critères d'acceptances :
 
 ------------- Positioner un nouveau vaisseau -------------
+
+
 	- Doit créer un vaisseau
 	- Il doit être positionné en haut à gauche
 ----------------------------------------------------------
@@ -16,4 +18,8 @@ Critères d'acceptances :
 ----------------------------------------------------------
 
 
+<<<<<<< HEAD
 (Test de commit et fetch)
+=======
+Penser à rajouter sprite et une définition de vitesse dans le glossaire.
+>>>>>>> refs/remotes/origin/master
