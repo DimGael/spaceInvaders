@@ -1,10 +1,13 @@
-package fr.unilim.iut.spaceinvaders;
+package fr.unilim.iut.spaceinvaders.moteurJeu;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import fr.unilim.iut.spaceinvaders.moteurJeu.DessinJeu;
+import fr.unilim.iut.spaceinvaders.model.Envahisseur;
+import fr.unilim.iut.spaceinvaders.model.Missile;
+import fr.unilim.iut.spaceinvaders.model.SpaceInvaders;
+import fr.unilim.iut.spaceinvaders.model.Vaisseau;
 
 public class DessinSpaceInvaders implements DessinJeu {
 
@@ -31,6 +34,11 @@ public class DessinSpaceInvaders implements DessinJeu {
 			Missile missile = this.jeu.recupererMissile();
 			this.dessinerUnMissile(missile, image);
 		}
+		
+		if (this.jeu.aUnEnvahisseur()){
+			Envahisseur envahisseur = this.jeu.recupererEnvahisseur();
+			this.dessinerUnEnvahisseur(envahisseur, image);
+		}
 	}
 	
 	private void dessinerUnVaisseau(Vaisseau vaisseau, BufferedImage image){
@@ -45,5 +53,12 @@ public class DessinSpaceInvaders implements DessinJeu {
 		
 		g2d.setColor(Color.BLUE);
 		g2d.fillRect(missile.abscisseLaPlusAGauche(), missile.ordonneeLaPlusBasse(), missile.getDimension().longueur(), missile.getDimension().hauteur());
+	}
+	
+	private void dessinerUnEnvahisseur(Envahisseur envahisseur, BufferedImage image){
+		Graphics2D g2d = (Graphics2D) image.getGraphics();
+		
+		g2d.setColor(Color.RED);
+		g2d.fillRect(envahisseur.abscisseLaPlusAGauche(), envahisseur.ordonneeLaPlusBasse(), envahisseur.getDimension().longueur(), envahisseur.getDimension().hauteur());
 	}
 }
