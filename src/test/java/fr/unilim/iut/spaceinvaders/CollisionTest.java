@@ -43,13 +43,27 @@ public class CollisionTest {
 	
 	@Test
 	public void TestTirMissilePlusGrosQueLenvahisseurDoitDetecterCollision(){
-		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(7,9), 1);
-		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(8,2), new Position(8,5), 1);
-		spaceinvaders.tirerUnMissile(new Dimension(1, 2), 1);
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(8,2), new Position(7,9), 1);
+		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(3,2), new Position(7,5), 1);
+		spaceinvaders.tirerUnMissile(new Dimension(6, 2), 1);
 		spaceinvaders.deplacerMissile();
+		
+		assertEquals("" + 
+				"...............\n" + 
+				"...............\n" +
+				"...............\n" + 
+				"...............\n" + 
+				".......WWW.....\n" + 
+				".......WMMMMMM.\n" + 
+				"........MMMMMM.\n" + 
+				"...............\n" + 
+				".......VVVVVVVV\n" + 
+				".......VVVVVVVV\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
 
 		assertEquals(true,Collision.detecterCollision(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
 	}
+	
+	
 	
 	
 }

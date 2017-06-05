@@ -4,54 +4,43 @@ public class Collision {
 
 	/**
 	 * Méthode statique vérifiant s'il y a une collision entre sprite1 et sprite2
-	 * @param missile
-	 * @param envahisseur
+	 * @param sprite1
+	 * @param sprite2
 	 * @return vrai si les deux sprites sont en collision
 	 */
-	public static boolean detecterCollision(Sprite missile, Sprite envahisseur){
+	public static boolean detecterCollision(Sprite sprite1, Sprite sprite2) {
+		return sprite1EtSprite2OntAuMoinsUnPointDabscisseCommun(sprite1, sprite2)
+				&& sprite1EtSprite2OntAuMoinsUnPointDordonneeCommun(sprite1, sprite2);
+	}
 
-//		for(int abscisse = sprite1.abscisseLaPlusAGauche(); abscisse <= sprite1.abscisseLaPlusADroite(); abscisse++){
-//			for(int ordonnee = sprite1.ordonneeLaPlusBasse(); ordonnee <= sprite2.ordonneeLaPlusHaute(); ordonnee++){
-//				if(sprite2.occupeLaPosition(abscisse, ordonnee)){
-//					System.out.println("Abscisse = "+abscisse+", ordonnée = "+ordonnee);
-//					return true;
-//				}
-//			}
-//		}
-//		return false;
-		
-		//sprite1 = missile
-		//sprite2 = envahisseur
-		boolean collisionAbscisse = false;
-		boolean collisionOrdonnee = false;
+	public static boolean sprite1EtSprite2OntAuMoinsUnPointDordonneeCommun(Sprite sprite1, Sprite sprite2) {
+		return ordonneeLaPlusBasseDeSprite1EstDansOrdonneesSprite2(sprite2, sprite1) ||
+				ordonneeLaPlusHauteDeSprite1EstDansOrdonneesSprite2(sprite2, sprite1);
+	}
 
-		//Si sprite1 et sprite2 ont au moins un point d'abscisse en commun
-		if((envahisseur.abscisseLaPlusAGauche() >= missile.abscisseLaPlusAGauche() &&
-				envahisseur.abscisseLaPlusAGauche() <= missile.abscisseLaPlusADroite()) ||
-				envahisseur.abscisseLaPlusADroite() >= missile.abscisseLaPlusAGauche() &&
-				envahisseur.abscisseLaPlusADroite() <= missile.abscisseLaPlusADroite())
-			collisionAbscisse = true;
-		
-		if((missile.abscisseLaPlusAGauche() >= envahisseur.abscisseLaPlusAGauche() &&
-				missile.abscisseLaPlusAGauche() <= envahisseur.abscisseLaPlusADroite()) ||
-				missile.abscisseLaPlusADroite() >= envahisseur.abscisseLaPlusAGauche() &&
-				missile.abscisseLaPlusADroite() <= envahisseur.abscisseLaPlusADroite())
-			collisionAbscisse = true;
-		
-		//Si sprite1 et sprite2 ont au moins un point de coordonée en commun
-		if((envahisseur.ordonneeLaPlusBasse() >= missile.ordonneeLaPlusBasse() &&
-				envahisseur.ordonneeLaPlusBasse() <= missile.ordonneeLaPlusHaute()) ||
-				envahisseur.ordonneeLaPlusHaute() >= missile.ordonneeLaPlusBasse() &&
-				envahisseur.ordonneeLaPlusHaute() <= missile.ordonneeLaPlusHaute())
-			collisionOrdonnee = true;
-		
-		if((missile.ordonneeLaPlusBasse() >= envahisseur.ordonneeLaPlusBasse() &&
-				missile.ordonneeLaPlusBasse() <= envahisseur.ordonneeLaPlusHaute()) ||
-				missile.ordonneeLaPlusHaute() >= envahisseur.ordonneeLaPlusBasse() &&
-				missile.ordonneeLaPlusHaute() <= envahisseur.ordonneeLaPlusHaute())
-			collisionOrdonnee = true;
-		
-		return collisionAbscisse&&collisionOrdonnee;
+	public static boolean sprite1EtSprite2OntAuMoinsUnPointDabscisseCommun(Sprite sprite1, Sprite sprite2) {
+		return abscisseAGaucheDeSprite1EstDansLesAbscissesSprite2(sprite1, sprite2) ||
+				abscisseADroiteDeSprite1EstDansLesAbscissesSprite2(sprite1, sprite2);
+	}
+
+	public static boolean ordonneeLaPlusHauteDeSprite1EstDansOrdonneesSprite2(Sprite sprite1, Sprite sprite2) {
+		return sprite1.ordonneeLaPlusHaute() >= sprite2.ordonneeLaPlusBasse() &&
+		sprite1.ordonneeLaPlusHaute() <= sprite2.ordonneeLaPlusHaute();
+	}
+
+	public static boolean ordonneeLaPlusBasseDeSprite1EstDansOrdonneesSprite2(Sprite sprite1, Sprite sprite2) {
+		return sprite1.ordonneeLaPlusBasse() >= sprite2.ordonneeLaPlusBasse() &&
+				sprite1.ordonneeLaPlusBasse() <= sprite2.ordonneeLaPlusHaute();
+	}
+
+	public static boolean abscisseADroiteDeSprite1EstDansLesAbscissesSprite2(Sprite sprite1, Sprite sprite2) {
+		return sprite2.abscisseLaPlusADroite() >= sprite1.abscisseLaPlusAGauche() &&
+		sprite2.abscisseLaPlusADroite() <= sprite1.abscisseLaPlusADroite();
+	}
+
+	public static boolean abscisseAGaucheDeSprite1EstDansLesAbscissesSprite2(Sprite sprite2, Sprite sprite1) {
+		return sprite1.abscisseLaPlusAGauche() >= sprite1.abscisseLaPlusAGauche() &&
+				sprite1.abscisseLaPlusAGauche() <= sprite1.abscisseLaPlusADroite();
 	}
 	
 }
