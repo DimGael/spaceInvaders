@@ -63,6 +63,51 @@ public class CollisionTest {
 		assertEquals(true,Collision.detecterCollision(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
 	}
 	
+	@Test
+	public void TestTirMissilePlusPetitQueLenvahisseurNeDoitPasDetecterCollision(){
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(7,9), 1);
+		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(3,2), new Position(8,1), 1);
+		spaceinvaders.tirerUnMissile(new Dimension(1, 2), 1);
+		spaceinvaders.deplacerMissile();
+		
+		assertEquals("" + 
+				"........WWW....\n" + 
+				"........WWW....\n" +
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"........M......\n" + 
+				"........M......\n" + 
+				"...............\n" + 
+				".......VVV.....\n" + 
+				".......VVV.....\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+		
+		assertEquals(false,Collision.detecterCollision(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+	}
+	
+	@Test
+	public void TestAucuneCollisionDetectéCarPasDenvahisseur(){
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(7,9), 1);
+		spaceinvaders.tirerUnMissile(new Dimension(1, 2), 1);
+		
+		for(int i = 0; i<6; i++){
+			spaceinvaders.deplacerMissile();
+		}
+		
+		assertEquals("" + 
+				"........M......\n" + 
+				"........M......\n" +
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				".......VVV.....\n" + 
+				".......VVV.....\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+		
+		assertEquals(false,Collision.detecterCollision(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+	}
 	
 	
 	

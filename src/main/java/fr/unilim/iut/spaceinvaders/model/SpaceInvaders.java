@@ -117,9 +117,8 @@ public class SpaceInvaders implements Jeu{
 
 	public void deplacerMissile() {
 		if (this.aUnMissile()) {
-			this.missile.deplacerVerticalementVers(Direction.HAUT_ECRAN);if (!estDansEspaceJeu(this.missile.abscisseLaPlusADroite(), this.missile.ordonneeLaPlusBasse())) {
-				// On regarde si l'ordonn�e la plus basse est dans l'espace de
-				// jeu car abscisse = 0 correspond � la ligne la plus en haut
+			this.missile.deplacerVerticalementVers(Direction.HAUT_ECRAN);
+			if (!estDansEspaceJeu(this.missile.abscisseLaPlusADroite(), this.missile.ordonneeLaPlusBasse())) {
 				this.missile = null;
 			}
 		}
@@ -127,7 +126,7 @@ public class SpaceInvaders implements Jeu{
 	}
 
 	public boolean etreFini() {
-		return false;
+		return Collision.detecterCollision(this.missile, this.envahisseur);
 	}
 
 	public void evoluer(Commande commandeUser) {
