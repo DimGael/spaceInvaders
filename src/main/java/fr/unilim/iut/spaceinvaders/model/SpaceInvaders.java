@@ -62,7 +62,7 @@ public class SpaceInvaders implements Jeu{
 		return marque;
 	}
 
-	private boolean aUnEnvahisseurQuiOccupeLaPosition(int x, int y) {
+	public boolean aUnEnvahisseurQuiOccupeLaPosition(int x, int y) {
 	return this.aUnEnvahisseur() && this.envahisseur.occupeLaPosition(x, y);
 	}
 
@@ -70,7 +70,7 @@ public class SpaceInvaders implements Jeu{
 		return this.envahisseur != null;
 	}
 
-	private boolean aUnMissileQuiOccupeLaPosition(int x, int y) {
+	public boolean aUnMissileQuiOccupeLaPosition(int x, int y) {
 		return this.aUnMissile() && this.missile.occupeLaPosition(x, y);
 	}
 	
@@ -78,7 +78,7 @@ public class SpaceInvaders implements Jeu{
 		return this.missile != null;
 	}
 
-	private boolean aUnVaisseauQuiOccupeLaPosition(int x, int y) {
+	public boolean aUnVaisseauQuiOccupeLaPosition(int x, int y) {
 		return this.aUnVaisseau() && this.vaisseau.occupeLaPosition(x, y);
 	}
 
@@ -86,7 +86,7 @@ public class SpaceInvaders implements Jeu{
 		return this.vaisseau != null;
 	}
 
-	private boolean estDansEspaceJeu(int x, int y) {
+	public boolean estDansEspaceJeu(int x, int y) {
 		return ((x >= 0) && (x < this.longueur)) && ((y >= 0) && (y < this.hauteur));
 	}
 
