@@ -152,7 +152,10 @@ public class SpaceInvaders implements Jeu{
 		}
 	}
 
-	private void deplacerEnvahisseur() {
+	/**
+	 * Déplace l'envahisseur suivant sa direction (droite ou gauche)
+	 */
+	public void deplacerEnvahisseur() {
 		
 		if(this.envahisseurSeDeplaceVersLaDroite()){
 			this.deplacerEnvahisseurVersLaDroite();
@@ -163,6 +166,10 @@ public class SpaceInvaders implements Jeu{
 		
 	}
 
+	/**
+	 * Determine la direction de l'envahisseur
+	 * @return 	vrai si l'envahisseur se déplace vers la droite ou faux si l'envahisseur se déplace vers la gauche
+	 */
 	private boolean envahisseurSeDeplaceVersLaDroite() {
 		if(this.envahisseurColleAGauche()){
 			this.deplacementDroiteEnvahisseur = true;

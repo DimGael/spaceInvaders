@@ -409,6 +409,46 @@ public class SpaceInvadersTest {
 	}
 	
 	@Test
+	public void test_EnvahisseurChangeDeDirectionDeDroiteAGauche(){
+		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(2,2), new Position(12,1), 1);
+		for (int i = 0; i<2; i++){
+			spaceinvaders.deplacerEnvahisseur();
+		}
+		
+		assertEquals("" + 
+		"............WW.\n" + 
+		"............WW.\n" +
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
+	
+	@Test
+	public void test_EnvahisseurChangeDeDirectionDeGaucheADroite(){
+		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(2,2), new Position(12,1), 1);
+		for (int i = 0; i<15; i++){
+			spaceinvaders.deplacerEnvahisseur();
+		}
+		
+		assertEquals("" + 
+		".WW............\n" + 
+		".WW............\n" +
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" + 
+		"...............\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	}
+	
+	@Test
 	public void test_LeJeuEstFini(){
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(7,9), 1);
 		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(3,2), new Position(8,5), 1);

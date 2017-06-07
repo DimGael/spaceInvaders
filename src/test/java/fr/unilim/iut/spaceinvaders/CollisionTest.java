@@ -64,6 +64,27 @@ public class CollisionTest {
 	}
 	
 	@Test
+	public void TestTirMissilePlusGrandQueLenvahisseurDoitDetecterCollision(){
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(7,9), 1);
+		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(4,2), new Position(7,5), 1);
+		spaceinvaders.tirerUnMissile(new Dimension(1, 5), 1);
+		
+		assertEquals("" + 
+				"...............\n" + 
+				"...............\n" +
+				"...............\n" + 
+				"........M......\n" + 
+				".......WMWW....\n" + 
+				".......WMWW....\n" + 
+				"........M......\n" + 
+				"........M......\n" + 
+				".......VVV.....\n" + 
+				".......VVV.....\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+		
+		assertEquals(true,Collision.detecterCollision(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+	}
+	
+	@Test
 	public void TestTirMissilePlusPetitQueLenvahisseurNeDoitPasDetecterCollision(){
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(7,9), 1);
 		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(3,2), new Position(8,1), 1);
@@ -86,7 +107,7 @@ public class CollisionTest {
 	}
 	
 	@Test
-	public void TestAucuneCollisionDetectéCarPasDenvahisseur(){
+	public void TestAucuneCollisionDetecteCarPasDenvahisseur(){
 		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(7,9), 1);
 		spaceinvaders.tirerUnMissile(new Dimension(1, 2), 1);
 		
@@ -109,6 +130,30 @@ public class CollisionTest {
 		assertEquals(false,Collision.detecterCollision(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
 	}
 	
+	@Test
+	public void TestCollisionNonDetecteCasLimite(){
+		spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2), new Position(7,9), 1);
+		spaceinvaders.positionnerUnNouvelEnvahisseur(new Dimension(2,2), new Position(6,1), 1);
+		spaceinvaders.tirerUnMissile(new Dimension(1, 2), 1);
+		
+		for(int i = 0; i<6; i++){
+			spaceinvaders.deplacerMissile();
+		}
+		
+		assertEquals("" + 
+				"......WWM......\n" + 
+				"......WWM......\n" +
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				"...............\n" + 
+				".......VVV.....\n" + 
+				".......VVV.....\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
+	
+		assertEquals(false,Collision.detecterCollision(spaceinvaders.recupererMissile(), spaceinvaders.recupererEnvahisseur()));
+	}
 	
 	
 }
